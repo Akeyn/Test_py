@@ -123,4 +123,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIFILES_DIRS = (os.path.join(BASE_DIR, "Test_py/apps/registration/static", ))
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'Test_py/apps/registration/static'), )
