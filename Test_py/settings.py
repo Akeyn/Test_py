@@ -37,11 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'bootstrap4',
     'Test_py.apps.registration',
-=======
->>>>>>> 6fdf1fa6859ea2d41018d8bb50018969aa8d3e01
 ]
 
 MIDDLEWARE = [
@@ -59,11 +56,8 @@ ROOT_URLCONF = 'Test_py.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': [os.path.join(BASE_DIR, 'Test_py/apps/registration/templates')]
-=======
+        'DIRS': [os.path.join(BASE_DIR, 'Test_py/apps/registration/templates')],
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
->>>>>>> 6fdf1fa6859ea2d41018d8bb50018969aa8d3e01
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -128,8 +122,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 
 STATIFILES_DIRS = (os.path.join(BASE_DIR, "Test_py/apps/registration/static", ))
-=======
->>>>>>> 6fdf1fa6859ea2d41018d8bb50018969aa8d3e01
