@@ -1,0 +1,59 @@
+{% extends 'bootstrap4.html' %}
+{% load bootstrap4 %}
+{% block bootstrap4_content %}
+    <div class="p-x-1 p-y-3">
+        <div class="alert alert-warning m-x-auto form-width" role="alert">
+          <strong>Oh snap!</strong> Enter E-mail!
+        </div>
+        <form class="card card-block m-x-auto bg-faded form-width">
+            <legend class="m-b-1 text-xs-center">Registration</legend>
+            <div class="form-group has-float-label has-warning">
+                <input class="form-control form-control-warning" id="email" type="email" placeholder="name@example.com"/>
+                <label for="email">E-mail</label>
+            </div>
+            <div class="form-group has-float-label">
+                <input class="form-control" id="first" type="text" placeholder="Firstname"/>
+                <label for="first">Firstname</label>
+            </div>
+            <div class="form-group has-float-label">
+                <input class="form-control" id="last" type="text" placeholder="Secondname"/>
+                <label for="last">Secondname</label>
+            </div>
+            <div class="form-group has-float-label">
+                <input class="form-control" id="login" type="login" placeholder="login"/>
+                <label for="login">Login</label>
+            </div>
+            <div class="form-group has-float-label">
+                <input class="form-control" id="password" type="password" placeholder="••••••••"/>
+                <label for="password">Password</label>
+            </div>
+            <div class="form-group has-float-label">
+                <input class="form-control" id="confirmPassword" type="password" placeholder="••••••••"/>
+                <label for="confirmPassword">Confirm password</label>
+            </div>
+            <div class="input-group form-group has-float-label">
+                <input class="form-control" type="date" value="" id="date">
+                <label for="date">Birth date</label>
+            </div>
+            <div class="form-group has-float-label">
+                <select class="form-control custom-select" id="country">
+                    <option selected></option>
+                    <option >Россия</option>
+                    <option>Казахстан</option>
+                    <option>Белоруссия</option>
+                </select>
+                <label for="country">Country</label>
+            </div>
+            <div class="form-group">
+                <label class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox"/>
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Agree with terms and conditions</span>
+                </label>
+            </div>
+            <div class="text-xs-center">
+                <button class="btn btn-block btn-primary" type="submit">Registration</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
