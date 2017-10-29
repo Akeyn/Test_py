@@ -31,14 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
+    # my apps
     'Test_py.apps.registration',
+    # third party apps
+    'bootstrap4',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

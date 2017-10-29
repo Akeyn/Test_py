@@ -1,0 +1,9 @@
+{% load widget_tweaks %}
+
+{% if form.non_field_errors %}
+    <div class="alert alert-danger m-x-auto form-width" role="alert">
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+    </div>
+{% endif %}
