@@ -7,6 +7,11 @@
         {% if request.session.user_id %}
             <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
                 {% csrf_token %}
+                {% if Subscriber.picture %}
+                    <img class="custom-img" src="{{ MEDIA_URL }}{{ Subscriber.picture.url }}" alt="">
+                {% else %}
+                    <img class="custom-img" src="holder.js/70x70?auto=yes&theme=gray&bg=00AEEF&text=None">
+                {% endif %}
                 <br>Your login - {{ Subscriber.login }}
                 <br>Your email - {{ Subscriber.email }}
                 <div class="text-xs-center">
