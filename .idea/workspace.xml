@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/.idea/workspace.xml" line="682" />
+    <bookmark url="file://$PROJECT_DIR$/.idea/workspace.xml" line="683" />
     <bookmark url="file://$PROJECT_DIR$/Test_py/apps/registration/forms.py" line="122" />
     <bookmark url="file://$PROJECT_DIR$/Test_py/apps/registration/views.py" line="67" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c155fb20-2d0d-4a74-b444-930efa397190" name="Default" comment="-A">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/settings.py" afterPath="$PROJECT_DIR$/Test_py/settings.py" />
-    </list>
+    <list default="true" id="c155fb20-2d0d-4a74-b444-930efa397190" name="Default" comment="-A" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +141,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="166" />
+    <option name="x" value="108" />
     <option name="y" value="17" />
     <option name="width" value="1918" />
     <option name="height" value="1015" />
@@ -299,7 +296,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="166" y="17" width="1918" height="1015" extended-state="0" />
+    <frame x="108" y="17" width="1918" height="1015" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17491926" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
