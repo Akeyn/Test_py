@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/.idea/workspace.xml" line="683" />
+    <bookmark url="file://$PROJECT_DIR$/.idea/workspace.xml" line="682" />
     <bookmark url="file://$PROJECT_DIR$/Test_py/apps/registration/forms.py" line="122" />
     <bookmark url="file://$PROJECT_DIR$/Test_py/apps/registration/views.py" line="67" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c155fb20-2d0d-4a74-b444-930efa397190" name="Default" comment="-A" />
+    <list default="true" id="c155fb20-2d0d-4a74-b444-930efa397190" name="Default" comment="-A">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +61,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Test_py/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-228">
-              <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="14" />
+            <state relative-caret-position="285">
+              <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -673,8 +675,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test_py/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="14" />
+        <state relative-caret-position="285">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
           <folding />
         </state>
       </provider>
