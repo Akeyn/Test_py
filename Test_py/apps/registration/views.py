@@ -56,6 +56,10 @@ def test(request):
     return render(request, 'Test.html')
 
 
+def userlist(request):
+    return render(request, 'userlist.html', {'Subscribers': Subscriber.objects.all()})
+
+
 def userpage(request):
     if request.method == "POST":
         logout = request.POST.get('logout', None)

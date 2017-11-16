@@ -1,0 +1,28 @@
+{% extends 'includes/bootstrap4.html' %}
+{% load bootstrap4 %}
+{% block bootstrap4_content %}
+{% load widget_tweaks %}
+    <div class="p-x-1 p-y-3">
+
+        <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
+            <table>
+                <tr>
+                    <td>login</td>
+                    <td>firstName</td>
+                    <td>secondName</td>
+                    <td>birthday</td>
+                    <td>picture</td>
+                </tr>
+                {% for Subscriber in Subscribers %}
+                    <tr>
+                        <td>{{ Subscriber.login }}</td>
+                        <td>{{ Subscriber.firstName }}</td>
+                        <td>{{ Subscriber.secondName }}</td>
+                        <td>{{ Subscriber.birthday }}</td>
+                        <td>pass</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+{% endblock %}
