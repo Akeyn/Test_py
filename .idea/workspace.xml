@@ -1,32 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/.idea/workspace.xml" line="694" />
+    <bookmark url="file://$PROJECT_DIR$/.idea/workspace.xml" line="682" />
     <bookmark url="file://$PROJECT_DIR$/Test_py/apps/registration/forms.py" line="122" />
     <bookmark url="file://$PROJECT_DIR$/Test_py/apps/registration/views.py" line="67" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c155fb20-2d0d-4a74-b444-930efa397190" name="Default" comment="-A">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test_py/apps/registration/static/registration/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test_py/apps/registration/static/registration/js/holder.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test_py/apps/registration/templates/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test_py/apps/registration/templates/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test_py/modules/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/forms.py" afterPath="$PROJECT_DIR$/Test_py/apps/registration/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/models.py" afterPath="$PROJECT_DIR$/Test_py/apps/registration/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/static/registration/bootstrap/bootstrap.min.css" afterPath="$PROJECT_DIR$/Test_py/apps/registration/static/registration/bootstrap/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/static/registration/style.css" afterPath="$PROJECT_DIR$/Test_py/apps/registration/static/registration/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/templates/Registration.html" afterPath="$PROJECT_DIR$/Test_py/apps/registration/templates/Registration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/templates/includes/bootstrap4.html" afterPath="$PROJECT_DIR$/Test_py/apps/registration/templates/includes/bootstrap4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/templates/includes/field_errors.html" afterPath="$PROJECT_DIR$/Test_py/apps/registration/templates/includes/field_errors.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/templates/login.html" afterPath="$PROJECT_DIR$/Test_py/apps/registration/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/urls.py" afterPath="$PROJECT_DIR$/Test_py/apps/registration/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/apps/registration/views.py" afterPath="$PROJECT_DIR$/Test_py/apps/registration/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/settings.py" afterPath="$PROJECT_DIR$/Test_py/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test_py/urls.py" afterPath="$PROJECT_DIR$/Test_py/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,21 +28,11 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
+            <state relative-caret-position="198">
               <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -78,8 +50,20 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
+            <state relative-caret-position="304">
               <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Test_py/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-228">
+              <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -140,7 +124,6 @@
         <option value="$PROJECT_DIR$/Test_py/apps/registration/templates/test.html" />
         <option value="$USER_HOME$/Desktop/test.py" />
         <option value="$PROJECT_DIR$/manage.py" />
-        <option value="$PROJECT_DIR$/Test_py/settings.py" />
         <option value="$PROJECT_DIR$/Test_py/template/index.html" />
         <option value="$PROJECT_DIR$/Test_py/apps/registration/urls.py" />
         <option value="$PROJECT_DIR$/Test_py/apps/registration/forms.py" />
@@ -150,6 +133,7 @@
         <option value="$PROJECT_DIR$/Test_py/urls.py" />
         <option value="$PROJECT_DIR$/Test_py/apps/registration/templates/userpage.html" />
         <option value="$PROJECT_DIR$/Test_py/apps/registration/views.py" />
+        <option value="$PROJECT_DIR$/Test_py/settings.py" />
       </list>
     </option>
   </component>
@@ -160,8 +144,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="654" />
-    <option name="y" value="23" />
+    <option name="x" value="166" />
+    <option name="y" value="17" />
     <option name="width" value="1918" />
     <option name="height" value="1015" />
   </component>
@@ -188,6 +172,11 @@
           <expand>
             <path>
               <item name="Test_py" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Test_py" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Test_py" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Test_py" type="462c0819:PsiDirectoryNode" />
               <item name="Test_py" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -310,7 +299,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="654" y="23" width="1918" height="1015" extended-state="0" />
+    <frame x="166" y="17" width="1918" height="1015" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17491926" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -318,9 +308,9 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25326088" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25255972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28782707" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28782707" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -583,14 +573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test_py/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -622,16 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test_py/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding>
-            <element signature="e#642#692#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -657,10 +629,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/models.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/share/kivy-examples/tutorials/pong/main.py" />
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="16" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_py/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -673,21 +664,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/share/kivy-examples/tutorials/pong/main.py" />
-    <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/views.py">
+    <entry file="file://$PROJECT_DIR$/Test_py/apps/registration/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="16" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/Test_py/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-228">
+          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="14" />
           <folding />
         </state>
       </provider>
