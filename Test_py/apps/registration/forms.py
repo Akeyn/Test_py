@@ -121,6 +121,7 @@ class RegistrationForm(BaseModelForm):
             'confirmPassword',
             'birthday',
             'country',
+            'picture',
         ]
         widgets = {
             'email': forms.TextInput(attrs={'placeholder': 'email'}),
@@ -132,8 +133,7 @@ class RegistrationForm(BaseModelForm):
                                                'max': datetime.now().strftime('%Y-%m-%d'),
                                                'min': (datetime.now()-timedelta(days=365*100)).strftime('%Y-%m-%d'),
                                                'onkeydown': 'return false',
-                                               }),
-            'picture': forms.ImageField(),
+                                               })
         }
 
     def clean(self):

@@ -1,3 +1,4 @@
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import *
@@ -5,8 +6,14 @@ from .forms import *
 # Create your views here.
 
 
+def handle_uploaded_file(f):
+    with open('/images/data.png', 'wb+') as dest:
+        for chunk in f.chunks():
+            dest.write(chunk)
+
+
 def registration(request):
-    form = RegistrationForm(data=request.POST)
+    form = RegistrationForm(request.POST, request.FILES or None)
 
     if request.method == "POST":
         login = request.POST.get('login', None)
@@ -26,12 +33,13 @@ def registration(request):
 
 
 def login(request):
-    form = LoginForm(data=request.POST)
+    form = LoginForm(request.POST, request.FILES)
 
     if request.method == "POST":
         loginEmail = request.POST.get('loginEmail', None)
 
         if form.is_valid() and request.session.get("user_id") is None:  # Проверка формы is_valid и существования сессии
+            handle_uploaded_file(request.FILES['file'])
             user = Subscriber.objects.filter(login=loginEmail).first() or Subscriber.objects.filter(
                 email=loginEmail).first()  # Получение логина или почты пользователя
             request.session['user_id'] = str(user.id)  # Сделать создание сессии не тут
