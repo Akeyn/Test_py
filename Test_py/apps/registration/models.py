@@ -25,6 +25,7 @@ class Subscriber(models.Model):
     country = models.IntegerField(choices=Country.objects.values_list('country_id', 'country_name'), null=True,
                                   blank=True)
     created_at = models.IntegerField(default=int(time.time()))  # timestamp - генерация при регистрации
+    picture = models.ImageField(null=True, blank=True, upload_to="images/", verbose_name='Изображение')
 
     def __str__(self):
         return str(str(self.id) + ' ' + self.login + ' ' + self.email)
