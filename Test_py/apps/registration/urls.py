@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'Login/$', views.login, name='Login'),
     url(r'Test/$', views.test, name='Test'),
     url(r'Userpage/$', views.userpage, name='Userpage'),
-    url(r'List/$', views.userlist, name='Userlist'),
+    url(r'Userlist/$', views.userlist, name='Userlist'),
     #url(r'registration_user/$', views.registration_user, name='registration_user'),
     #url(r'^registration/(?P<index>[0-9]+)/$', views.re),
 ]

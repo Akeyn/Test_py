@@ -4,22 +4,28 @@
 {% load widget_tweaks %}
     <div class="p-x-1 p-y-3">
 
-        <form action="" class="card card-block m-x-auto bg-faded form-width">
+        <form class="card card-block m-x-auto bg-faded form-width">
             <table>
                 <tr>
-                    <td>login</td>
-                    <td>firstName</td>
-                    <td>secondName</td>
-                    <td>birthday</td>
-                    <td>picture</td>
+                    <td class="custom-td-main">Login</td>
+                    <td class="custom-td-main">First N</td>
+                    <td class="custom-td-main">Second N</td>
+                    <td class="custom-td-main">Birthday</td>
+                    <td class="custom-td-main">Picture</td>
                 </tr>
                 {% for Subscriber in Subscribers %}
                     <tr>
-                        <td>{{ Subscriber.login }}</td>
-                        <td>{{ Subscriber.firstName }}</td>
-                        <td>{{ Subscriber.secondName }}</td>
-                        <td>{{ Subscriber.birthday }}</td>
-                        <td>pass</td>
+                        <td class="custom-td">{{ Subscriber.login }}</td>
+                        <td class="custom-td">{{ Subscriber.firstName }}</td>
+                        <td class="custom-td">{{ Subscriber.secondName }}</td>
+                        <td class="custom-td">{{ Subscriber.birthday }}</td>
+                        <td class="custom-td">
+                            {% if Subscriber.picture %}
+                                <img class="custom-img" src="{{ MEDIA_URL }}{{ Subscriber.picture.url }}" alt="">
+                            {% else %}
+                                <img class="custom-img" src="holder.js/70x70?auto=yes&theme=gray&bg=00AEEF&text=None">
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </table>

@@ -133,6 +133,7 @@ class RegistrationForm(BaseModelForm):
                                                'min': (datetime.now()-timedelta(days=365*100)).strftime('%Y-%m-%d'),
                                                'onkeydown': 'return false',
                                                }),
+            'picture': forms.ImageField(),
         }
 
     def clean(self):
@@ -141,7 +142,7 @@ class RegistrationForm(BaseModelForm):
 
         c_email = self.cleaned_data.get('email', None)
         c_first_name = self.cleaned_data.get('firstName', None)
-        c_second_name = self.cleaned_data.get('secondName', None)
+        # c_second_name = self.cleaned_data.get('secondName', None)
         c_login = self.cleaned_data.get('login', None)
         c_password = self.cleaned_data.get('password', None)
         c_confirm_password = self.cleaned_data.get('confirmPassword', None)
@@ -237,7 +238,8 @@ class RegistrationForm(BaseModelForm):
             secondName=self.cleaned_data.get('secondName', None),
             login=self.cleaned_data.get('login', None),
             birthday=self.cleaned_data.get('birthday', None),
-            country=self.cleaned_data.get('country', None)
+            country=self.cleaned_data.get('country', None),
+            picture=self.cleaned_data.get('picture', None)
         )
         info = {'save': [
             'registration_subscriber',
