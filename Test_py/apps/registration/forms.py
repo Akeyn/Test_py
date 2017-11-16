@@ -102,6 +102,14 @@ class RegistrationForm(BaseModelForm):
         widget=forms.CheckboxInput(),
         label='You have read and agree with terms and conditions of the <a href="#">AVM Customer Agreement</a>')
 
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        # there's a `fields` property now
+        self.fields['secondName'].required = False
+        self.fields['country'].required = False
+        self.fields['birthday'].required = False
+
     class Meta:
         model = Subscriber
         fields = [
