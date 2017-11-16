@@ -317,3 +317,4 @@ class LoginForm(BaseForm):
     #  errors.setdefault("Passwords don't match", {"password": "", "confirmPassword": "Passwords don't match"})
     #  errors.setdefault("Login or Email doesn't exist", {"password": "", "loginEmail": ""})
     #  errors.setdefault("Incorrect password", {"password": ""})
+
