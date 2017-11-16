@@ -1,92 +1,76 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import *
 
 # Create your views here.
 
 
 def registration(request):
-
     form = RegistrationForm(data=request.POST)
 
     if request.method == "POST":
-        if form.is_valid():
+        login = request.POST.get('login', None)
+
+        if form.is_valid() and request.session.get("user_id") is None:  # Проверка формы is_valid и существования сессии
             form.save()
-            return render(request, 'registration.html', locals())
+            user = Subscriber.objects.filter(login=login).first()  # Получение логина пользователя
+            request.session['user_id'] = str(user.id)  # Сделать создание сессии не тут
+            return redirect('/Userpage')  # Перенаправление на страницу пользователя
         else:
             return render(request, 'registration.html', locals())
-
     else:
         form = RegistrationForm()
-
         context = {'form': form}
 
         return render(request, 'registration.html', context)
 
-def login(request):
 
+def login(request):
     form = LoginForm(data=request.POST)
 
     if request.method == "POST":
-        if form.is_valid():
-            print('1')  # Text
-            return render(request, 'login.html', locals())
+        loginEmail = request.POST.get('loginEmail', None)
+
+        if form.is_valid() and request.session.get("user_id") is None:  # Проверка формы is_valid и существования сессии
+            user = Subscriber.objects.filter(login=loginEmail).first() or Subscriber.objects.filter(
+                email=loginEmail).first()  # Получение логина или почты пользователя
+            request.session['user_id'] = str(user.id)  # Сделать создание сессии не тут
+
+            return redirect('/Userpage')  # Перенаправление на страницу пользователя
         else:
-            print('invalid')  # Text
             return render(request, 'login.html', locals())
 
     else:
+        #del request.session['user_id']  # Удаление сессии
         form = LoginForm()
-        print('Dont POST')  # Text
-
         context = {'form': form}
 
         return render(request, 'login.html', context)
-"""
-countries = Country.objects.all()
 
-context = {'countries': countries}
-
-return render(request, 'registration.html', context)
-"""
 
 def error(request):
     return render(request, 'Error.html')
 
-"""
-def registration_user(request):
 
-    form = RegistrationForm(data=request.POST)
+def test(request):
+    return render(request, 'Test.html')
 
+
+def userpage(request):
     if request.method == "POST":
-        if form.is_valid():
-            print('1')
-            return render(request, 'Registration.html', locals())
-            # form.save()
-            # return render(request, 'Registration.html', locals())
-        else:
-            print('invalid')
-            return render(request, 'Registration.html', locals())
+        logout = request.POST.get('logout', None)
 
-    else:
-        form = RegistrationForm()
-        print('Dont POST')
-        context = {'form': form}
+        if logout and request.session['user_id']:
+            del request.session['user_id']  # Удаление сессии
+            return redirect('/')  # Переадресация на главную страницу
 
-        return render(request, 'Registration.html', context)
-"""
+    try:
+        return render(request, 'userpage.html', {'Subscriber': Subscriber.objects.get(id=request.session['user_id'])})
+    except:
+        return render(request, 'userpage.html')
 
-"""
-email = request.POST.get('email')
-firstname = request.POST.get('firstname')
-secondname = request.POST.get('secondname')
-login = request.POST.get('login')
-password = request.POST.get('password')
-confirmPassword = request.POST.get('confirmPassword')
-date = request.POST.get('date')
-country = request.POST.get('country')
-checkbox = request.POST.get('checkbox', False)
-"""
+
+# m = re.match(r"(?P<first_name>\w+) (?P<last_name>\w+)", "Malcolm Reynolds")
 
 """
 def re(request, index):

@@ -25,7 +25,7 @@ SECRET_KEY = '2w#*xmb=^77i0@@97i%c0qq5ryk!ryegq4ezw64c$uh$)*j8)p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.103', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -128,3 +128,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'Test_py/apps/registration/static'), )
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True

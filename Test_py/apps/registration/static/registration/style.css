@@ -81,3 +81,48 @@
 .asteriskField {
 	color: red;
 }
+
+.revert-bootstrap .card-columns {
+	column-gap: 1rem;
+	position:relative;
+}
+
+.revert-bootstrap .card {
+	margin-bottom: 1rem;
+}
+
+@media (max-width: 575px) {
+	.revert-bootstrap .card-columns {
+		column-count: 1;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	.revert-bootstrap .card-columns {
+		column-count: 2;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.revert-bootstrap .card-columns {
+		column-count: 2;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.revert-bootstrap .card-columns {
+		column-count: 3;
+	}
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+	.revert-bootstrap .card-columns {
+		column-count: 4;
+	}
+}
+
+@media (min-width: 1400px) {
+	.revert-bootstrap .card-columns {
+		column-count: 5;
+	}
+}

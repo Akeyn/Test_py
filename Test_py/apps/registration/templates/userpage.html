@@ -4,14 +4,18 @@
 {% load widget_tweaks %}
     <div class="p-x-1 p-y-3">
 
-        {% if request.session.user_id is None %}
+        {% if request.session.user_id %}
             <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
-                New user? <a href="{% url 'Registration' %}">Create new account</a><br>
-                Already have an account? <a href="{% url 'Login' %}">Login here</a>
+                {% csrf_token %}
+                <br>Your login - {{ Subscriber.login }}
+                <br>Your email - {{ Subscriber.email }}
+                <div class="text-xs-center">
+                    <input class="btn btn-block btn-primary" type="submit" value="Logout" name="logout">
+                </div>
             </form>
         {% else %}
             <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
-                You already login <a href="{% url 'Userpage' %}">Your page</a>
+                You not login! <a href="/">Home page</a><br>
             </form>
         {% endif %}
     </div>
