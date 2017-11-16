@@ -152,18 +152,16 @@ class RegistrationForm(BaseModelForm):
         # Проверка на кириллицу
         kirillic(errors, c_login, "login")
         kirillic(errors, c_first_name, "firstName")
-        kirillic(errors, c_second_name, "secondName")
+        # kirillic(errors, c_second_name, "secondName")
         kirillic(errors, c_password, "confirmPassword")
 
         # Проверка длины полей
         length_check(errors, c_login, "login")
         length_check(errors, c_first_name, "firstName")
-        length_check(errors, c_second_name, "secondName")
 
         # Проверка пустоты полей
         cln(errors, c_login, "login")
         cln(errors, c_first_name, "firstName")
-        cln(errors, c_second_name, "secondName")
 
         # Проверка логина на знаки \W, без пробельных знаков \s
         c_login = c_login.strip()
@@ -174,7 +172,7 @@ class RegistrationForm(BaseModelForm):
 
         # Проверка на знаки \W\d, без пробельных знаков \s
         no_char(errors, c_first_name, "firstName")
-        no_char(errors, c_second_name, "secondName")
+        # no_char(errors, c_second_name, "secondName")
 
         # Валидация Email
         email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"

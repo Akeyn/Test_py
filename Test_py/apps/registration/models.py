@@ -18,11 +18,12 @@ class Subscriber(models.Model):
 
     email = models.EmailField(max_length=64)
     firstName = models.CharField(max_length=32)
-    secondName = models.CharField(max_length=32)
+    secondName = models.CharField(max_length=32, null=True, blank=True)
     login = models.CharField(max_length=32)
     password = models.CharField(max_length=256)  # Сделать не изменяемым в админке
-    birthday = models.DateField()  # Сделать не изменяемым в админке
-    country = models.IntegerField(choices=Country.objects.values_list('country_id', 'country_name'))
+    birthday = models.DateField(null=True, blank=True)  # Сделать не изменяемым в админке
+    country = models.IntegerField(choices=Country.objects.values_list('country_id', 'country_name'), null=True,
+                                  blank=True)
     created_at = models.IntegerField(default=int(time.time()))  # timestamp - генерация при регистрации
 
     def __str__(self):
