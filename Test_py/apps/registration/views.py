@@ -81,7 +81,8 @@ def editinfo(request):
             form.firstName = request.POST.get('firstName', None)
             form.secondName = request.POST.get('secondName', None)
             form.birthday = request.POST.get('birthday', None)
-            form.picture = request.FILES.get('picture', None)
+            if request.FILES.get('picture', None) is not None:
+                form.picture = request.FILES.get('picture', None)
             form.save()
 
             return redirect('/Userpage/Edit')
