@@ -39,7 +39,6 @@ def login(request):
         loginEmail = request.POST.get('loginEmail', None)
 
         if form.is_valid() and request.session.get("user_id") is None:  # Проверка формы is_valid и существования сессии
-            handle_uploaded_file(request.FILES['file'])
             user = Subscriber.objects.filter(login=loginEmail).first() or Subscriber.objects.filter(
                 email=loginEmail).first()  # Получение логина или почты пользователя
             request.session['user_id'] = str(user.id)  # Сделать создание сессии не тут
@@ -56,18 +55,6 @@ def login(request):
         return render(request, 'login.html', context)
 
 
-def error(request):
-    return render(request, 'Error.html')
-
-
-def test(request):
-    return render(request, 'Test.html')
-
-
-def userlist(request):
-    return render(request, 'userlist.html', {'Subscribers': Subscriber.objects.all()})
-
-
 def userpage(request):
     if request.method == "POST":
         logout = request.POST.get('logout', None)
@@ -81,6 +68,42 @@ def userpage(request):
     except:
         return render(request, 'userpage.html')
 
+
+def editinfo(request):
+    usr = request.session['user_id']
+    sub = Subscriber.objects.get(id=usr)
+
+    form = EditForm(usr, request.POST, request.FILES)
+
+    if request.method == "POST":
+        if form.is_valid():
+            form = Subscriber.objects.get(id=usr)
+            form.firstName = request.POST.get('firstName', None)
+            form.secondName = request.POST.get('secondName', None)
+            form.birthday = request.POST.get('birthday', None)
+            form.picture = request.FILES.get('picture', None)
+            form.save()
+
+            return redirect('/Userpage/Edit')
+        else:
+            return render(request, 'editinfo.html', locals())
+    else:
+        form = EditForm(usr)
+        context = {'form': form, 'Subscriber': sub}
+
+        return render(request, 'editinfo.html', context)
+
+
+def userlist(request):
+    return render(request, 'userlist.html', {'Subscribers': Subscriber.objects.all()})
+
+
+def error(request):
+    return render(request, 'Error.html')
+
+
+def test(request):
+    return render(request, 'Test.html')
 
 # m = re.match(r"(?P<first_name>\w+) (?P<last_name>\w+)", "Malcolm Reynolds")
 

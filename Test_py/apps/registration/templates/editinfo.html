@@ -5,20 +5,24 @@
     <div class="p-x-1 p-y-3">
 
         {% if request.session.user_id %}
-            <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
+            {% include 'includes/field_errors.html' with form=form %}
+
+            <form action="" method="post" class="card card-block m-x-auto bg-faded form-width" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if Subscriber.picture %}
                     <img class="custom-img-single" src="{{ MEDIA_URL }}{{ Subscriber.picture.url }}" alt="">
                 {% else %}
                     <img class="custom-img-single" src="holder.js/70x70?auto=yes&theme=gray&bg=00AEEF&text=None">
                 {% endif %}
-                <br>Your login - {{ Subscriber.login }}
-                <br>Your email - {{ Subscriber.email }}
+                <legend class="m-b-1 text-xs-center">{{ request.resolver_match.url_name }}</legend>
+
+                {% include 'includes/form.html' with form=form %}
+
                 <div class="text-xs-center">
-                    <input class="btn btn-block btn-primary" type="submit" value="Logout" name="logout">
+                    <input class="btn btn-block btn-primary" type="submit" value="{{ request.resolver_match.url_name }}">
                 </div>
             </form>
-            <p class="text-xs-center m-x-auto form-width text-muted">Do you want to change the information? <a href="{% url 'Editinfo' %}">Edit</a></p>
+            <p class="text-xs-center m-x-auto form-width text-muted">Back to <a href="{% url 'Userpage' %}">Profile</a></p>
         {% else %}
             <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
                 You not login! <a href="/">Home page</a><br>

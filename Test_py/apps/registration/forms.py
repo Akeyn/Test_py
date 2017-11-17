@@ -294,6 +294,30 @@ class LoginForm(BaseForm):
         # Вызов метода проверки массива ошибок
         error_existence(self, errors)
 
+
+class EditForm(BaseForm):
+    def __init__(self, user_id, *args, **kwargs):
+        super(EditForm, self).__init__(*args, **kwargs)
+        user = Subscriber.objects.filter(id=user_id).first()
+        self.fields['firstName'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'firstName',
+                                                                                 'value': user.firstName}))
+        self.fields['secondName'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'secondName',
+                                                                                  'value': user.secondName}))
+        self.fields['birthday'] = forms.CharField(widget=forms.DateInput(attrs={
+            'placeholder': 'birthday',
+            'type': 'date',
+            'max': datetime.now().strftime('%Y-%m-%d'),
+            'min': (datetime.now() - timedelta(days=365 * 100)).strftime('%Y-%m-%d'),
+            'onkeydown': 'return false',
+            'value': user.birthday}))
+        self.fields['picture'] = forms.ImageField()  # 'value': user.picture
+        # print(user, user.picture, user.picture.url)
+
+        self.fields['firstName'].required = False
+        self.fields['secondName'].required = False
+        self.fields['birthday'].required = False
+        self.fields['picture'].required = False
+
     # Метод проверки массива ошибок
     """
     def error_existence(self, err):

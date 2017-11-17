@@ -7,7 +7,7 @@
         {% if request.session.user_id is None %}
             {% include 'includes/field_errors.html' with form=form %}
 
-            <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
+            <form action="" method="post" class="card card-block m-x-auto bg-faded form-width" enctype="multipart/form-data">
                 {% csrf_token %}
                 <legend class="m-b-1 text-xs-center">{{ request.resolver_match.url_name }}</legend>
 
