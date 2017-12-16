@@ -1,0 +1,27 @@
+{% extends 'includes/bootstrap4.html' %}
+{% load bootstrap4 %}
+{% block bootstrap4_content %}
+{% load widget_tweaks %}
+    <div class="p-x-1 p-y-3">
+
+        {% if request.session.user_id %}
+            {% include 'includes/field_errors.html' with form=form %}
+
+            <form action="" method="post" class="card card-block m-x-auto bg-faded form-width" enctype="multipart/form-data">
+                {% csrf_token %}
+                <legend class="m-b-1 text-xs-center">{{ request.resolver_match.url_name }}</legend>
+
+                {% include 'includes/form.html' with form=form %}
+
+                <div class="text-xs-center">
+                    <input class="btn btn-block btn-primary" type="submit" value="{{ request.resolver_match.url_name }}">
+                </div>
+            </form>
+            <p class="text-xs-center m-x-auto form-width text-muted"><a href="{% url 'Meterlist' %}">Meter list</a></p>
+        {% else %}
+            <form action="" method="post" class="card card-block m-x-auto bg-faded form-width">
+                You not login! <a href="/">Home page</a><br>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

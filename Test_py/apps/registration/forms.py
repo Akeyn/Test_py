@@ -11,6 +11,7 @@ import socket
 import json
 import re
 
+
 # Create your forms here.
 
 
@@ -25,7 +26,8 @@ def broadcast(info):
         client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
         client_sock.connect(('127.0.0.1', 53210))
 
-        b = json.dumps(info, default=date_handler).encode('utf-8')  # Преобразование dict в str объект json, преобразовать этот str в bytes
+        b = json.dumps(info, default=date_handler).encode(
+            'utf-8')  # Преобразование dict в str объект json, преобразовать этот str в bytes
         client_sock.sendall(b)  # Отправка словаря на сервер
 
         data = client_sock.recv(1024)
@@ -42,6 +44,7 @@ def kirillic(err, name, str_name):
     if re.search(r"[А-Яа-я]", name):
         return err.setdefault("Invalid format!", []).append({
             str_name: "Cyrillic characters can't be used in password!"})
+
 
 # Метод проверка на знаки \W, без пробельных знаков \s (first name, second name)
 def no_char(err, name, str_name):
@@ -131,7 +134,7 @@ class RegistrationForm(BaseModelForm):
             'password': forms.PasswordInput(attrs={'type': 'password', 'placeholder': 'password'}),
             'birthday': forms.DateInput(attrs={'type': 'date', 'placeholder': 'birthday',
                                                'max': datetime.now().strftime('%Y-%m-%d'),
-                                               'min': (datetime.now()-timedelta(days=365*100)).strftime('%Y-%m-%d'),
+                                               'min': (datetime.now() - timedelta(days=365 * 100)).strftime('%Y-%m-%d'),
                                                'onkeydown': 'return false',
                                                })
         }
@@ -252,7 +255,7 @@ class RegistrationForm(BaseModelForm):
             subscriber.birthday,
             subscriber.country,
             subscriber.created_at
-            ]}  # Словарь для отправки на сервер
+        ]}  # Словарь для отправки на сервер
         broadcast(info)  # Отправка данных на сервер
         return subscriber
 
@@ -318,6 +321,65 @@ class EditForm(BaseForm):
         self.fields['birthday'].required = False
         self.fields['picture'].required = False
 
+
+class MeterForm(BaseModelForm):
+    class Meta:
+        model = Meter
+        fields = [
+            'type_meter_id',
+            'date_of_creation',
+            'pulses_per_hour',
+            'max_value',
+            'min_value',
+            'value',
+            'cost',
+            'subscriber_id',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        user_id = kwargs.pop('user_id', None)
+        super(MeterForm, self).__init__(*args, **kwargs)
+
+        self.fields['date_of_creation'] = forms.CharField(widget=forms.DateInput(attrs={
+            'placeholder': 'birthday',
+            'type': 'date',
+            'max': datetime.now().strftime('%Y-%m-%d'),
+            'min': (datetime.now() - timedelta(days=365 * 100)).strftime('%Y-%m-%d'),
+            'onkeydown': 'return false'}))
+        self.fields['pulses_per_hour'] = forms.CharField(
+            widget=forms.TextInput(attrs={'placeholder': 'pulses per hour'}))
+        self.fields['max_value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'max value'}))
+        self.fields['min_value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'min value'}))
+        self.fields['value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'value'}))
+        self.fields['cost'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'cost'}))
+        self.fields['subscriber_id'] = forms.CharField(widget=forms.HiddenInput(attrs={'value': user_id}))  # TODO
+
+
+class EditMeterForm(BaseForm):
+    def __init__(self, meter_id, *args, **kwargs):
+        super(EditMeterForm, self).__init__(*args, **kwargs)
+        meter = Meter.objects.filter(id=meter_id).first()
+
+        self.fields['type_meter_id'] = forms.ChoiceField(choices=TypeMeter.objects.values_list('id', 'type_meter_name'),
+                                                         initial=meter.type_meter_id)
+        self.fields['date_of_creation'] = forms.CharField(widget=forms.DateInput(attrs={
+            'placeholder': 'birthday',
+            'type': 'date',
+            'max': datetime.now().strftime('%Y-%m-%d'),
+            'min': (datetime.now() - timedelta(days=365 * 100)).strftime('%Y-%m-%d'),
+            'onkeydown': 'return false',
+            'value': meter.date_of_creation}))
+        self.fields['pulses_per_hour'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'pulses per hour',
+                                                                                       'value': meter.pulses_per_hour}))
+        self.fields['max_value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'max value',
+                                                                                 'value': meter.max_value}))
+        self.fields['min_value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'min value',
+                                                                                 'value': meter.min_value}))
+        self.fields['value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'value',
+                                                                             'value': meter.value}))
+        self.fields['cost'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'cost',
+                                                                            'value': meter.cost}))
+
     # Метод проверки массива ошибок
     """
     def error_existence(self, err):
@@ -343,4 +405,3 @@ class EditForm(BaseForm):
     #  errors.setdefault("Passwords don't match", {"password": "", "confirmPassword": "Passwords don't match"})
     #  errors.setdefault("Login or Email doesn't exist", {"password": "", "loginEmail": ""})
     #  errors.setdefault("Incorrect password", {"password": ""})
-

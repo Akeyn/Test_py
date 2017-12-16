@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import *
 
+
 # Create your views here.
 
 
@@ -48,7 +49,7 @@ def login(request):
             return render(request, 'login.html', locals())
 
     else:
-        #del request.session['user_id']  # Удаление сессии
+        # del request.session['user_id']  # Удаление сессии
         form = LoginForm()
         context = {'form': form}
 
@@ -106,7 +107,74 @@ def error(request):
 def test(request):
     return render(request, 'Test.html')
 
+
+def meterlist(request):
+    return render(request, 'meterlist.html', {'Meters': Meter.objects.filter(subscriber_id=request.session['user_id'])})
+
+
+def meter(request):
+    user_id = request.session['user_id']
+    form = MeterForm(request.POST, user_id=user_id)
+    form.subscriber_id = 0000
+
+    if request.method == "POST":
+
+        if form.is_valid():  # Проверка формы is_valid и существования сессии
+            form.type_meter_id = request.POST.get('type_meter_id', None)
+            form.date_of_creation = request.POST.get('date_of_creation', None)
+            form.pulses_per_hour = request.POST.get('pulses_per_hour', None)
+            form.max_value = request.POST.get('max_value', None)
+            form.min_value = request.POST.get('min_value', None)
+            form.value = request.POST.get('value', None)
+            form.cost = request.POST.get('cost', None)
+            form.subscriber_id = request.POST.get('subscriber_id', None)  # TODO request.session['user_id']
+
+            form.save()
+            return redirect('/Meterlist')  # Перенаправление на страницу пользователя
+        else:
+            return render(request, 'meter.html', locals())
+    else:
+        form = MeterForm(user_id=user_id)
+        context = {'form': form}
+
+        return render(request, 'meter.html', context)
+
+
+def editmeterinfo(request, meter_id):
+    usr = request.session['user_id']
+    sub = Meter.objects.get(id=meter_id, subscriber_id=usr)
+
+    form = EditMeterForm(meter_id, request.POST)
+
+    if request.method == "POST":
+        if form.is_valid():
+            form = Meter.objects.get(id=meter_id, subscriber_id=usr)
+            form.type_meter_id = request.POST.get('type_meter_id', None)
+            form.date_of_creation = request.POST.get('date_of_creation', None)
+            form.pulses_per_hour = request.POST.get('pulses_per_hour', None)
+            form.max_value = request.POST.get('max_value', None)
+            form.min_value = request.POST.get('min_value', None)
+            form.value = request.POST.get('value', None)
+            form.cost = request.POST.get('cost', None)
+
+            form.save()
+            return redirect('/Meter/Edit/' + meter_id + '/')
+        else:
+            return render(request, 'editmeterinfo.html', locals())
+    else:
+        form = EditMeterForm(meter_id)
+        context = {'form': form, 'Meter': sub}
+
+        return render(request, 'editmeterinfo.html', context)
+
+
+def deletemeter(request, meter_id):
+    Meter.objects.filter(id=meter_id).delete()
+    return redirect('/Meterlist')
+
+
 # m = re.match(r"(?P<first_name>\w+) (?P<last_name>\w+)", "Malcolm Reynolds")
+
 
 """
 def re(request, index):

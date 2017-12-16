@@ -1,0 +1,46 @@
+{% extends 'includes/bootstrap4.html' %}
+{% load bootstrap4 %}
+{% block bootstrap4_content %}
+{% load widget_tweaks %}
+    <div class="p-x-1 p-y-3">
+
+        <form class="card card-block m-x-auto bg-faded form-width">
+            <a class="btn btn-block btn-primary" href="{% url 'Meter' %}">Create meter</a>
+            <table>
+                {% if Meters.count%}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="custom-td-main">Id</td>
+                        <td class="custom-td-main">type_meter_id</td>
+                        <td class="custom-td-main">date_of_creation</td>
+                        <td class="custom-td-main">pulses_per_hour</td>
+                        <td class="custom-td-main">max_value</td>
+                        <td class="custom-td-main">min_value</td>
+                        <td class="custom-td-main">value</td>
+                        <td class="custom-td-main">cost</td>
+                        <td class="custom-td-main">subscriber_id</td>
+                    </tr>
+                    {% for Meter in Meters %}
+                        <tr>
+                            <td class="custom-td"><a class="btn btn-block btn-primary" href="/Meter/Edit/{{ Meter.id }}/">EDIT</a></td>
+                            <td class="custom-td"><a class="btn btn-block btn-primary" href="/Meter/Delete/{{ Meter.id }}/">DELETE</a></td>
+                            <td class="custom-td">{{ Meter.id }}</td>
+                            <td class="custom-td">{{ Meter.type_meter_id }}</td>
+                            <td class="custom-td">{{ Meter.date_of_creation }}</td>
+                            <td class="custom-td">{{ Meter.pulses_per_hour }}</td>
+                            <td class="custom-td">{{ Meter.max_value }}</td>
+                            <td class="custom-td">{{ Meter.min_value }}</td>
+                            <td class="custom-td">{{ Meter.value }}</td>
+                            <td class="custom-td">{{ Meter.cost }}</td>
+                            <td class="custom-td">{{ Meter.subscriber_id }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    List is clear
+                {% endif %}
+            </table>
+        </form>
+        <p class="text-xs-center m-x-auto form-width text-muted"><a href="{% url 'Userpage' %}">Userpage</a></p>
+    </div>
+{% endblock %}
