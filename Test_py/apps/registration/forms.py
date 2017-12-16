@@ -313,9 +313,7 @@ class EditForm(BaseForm):
             'min': (datetime.now() - timedelta(days=365 * 100)).strftime('%Y-%m-%d'),
             'onkeydown': 'return false',
             'value': user.birthday}))
-        self.fields['picture'] = forms.ImageField()  # 'value': user.picture
-        # print(user, user.picture, user.picture.url)
-
+        self.fields['picture'] = forms.ImageField()
         self.fields['firstName'].required = False
         self.fields['secondName'].required = False
         self.fields['birthday'].required = False
@@ -333,6 +331,7 @@ class MeterForm(BaseModelForm):
             'min_value',
             'value',
             'cost',
+            'recognized_id',
             'subscriber_id',
         ]
 
@@ -352,7 +351,8 @@ class MeterForm(BaseModelForm):
         self.fields['min_value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'min value'}))
         self.fields['value'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'value'}))
         self.fields['cost'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'cost'}))
-        self.fields['subscriber_id'] = forms.CharField(widget=forms.HiddenInput(attrs={'value': user_id}))  # TODO
+        self.fields['recognized_id'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'recognized_id'}))
+        self.fields['subscriber_id'] = forms.CharField(widget=forms.HiddenInput(attrs={'value': user_id}))
 
 
 class EditMeterForm(BaseForm):
@@ -379,6 +379,8 @@ class EditMeterForm(BaseForm):
                                                                              'value': meter.value}))
         self.fields['cost'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'cost',
                                                                             'value': meter.cost}))
+        self.fields['recognized_id'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'recognized_id',
+                                                                                     'value': meter.recognized_id}))
 
     # Метод проверки массива ошибок
     """

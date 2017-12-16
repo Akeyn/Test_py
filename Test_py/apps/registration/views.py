@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import *
 
-
 # Create your views here.
 
 
@@ -156,6 +155,7 @@ def editmeterinfo(request, meter_id):
             form.min_value = request.POST.get('min_value', None)
             form.value = request.POST.get('value', None)
             form.cost = request.POST.get('cost', None)
+            form.recognized_id = request.POST.get('recognized_id', None)
 
             form.save()
             return redirect('/Meter/Edit/' + meter_id + '/')

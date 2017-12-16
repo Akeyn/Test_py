@@ -36,7 +36,7 @@ class TypeMeter(models.Model):
     metric_name = models.CharField(max_length=32)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.type_meter_name)
 
 
 class Meter(models.Model):
@@ -48,10 +48,11 @@ class Meter(models.Model):
     min_value = models.FloatField(null=True, blank=True)
     value = models.FloatField(null=True, blank=True)
     cost = models.FloatField(null=True, blank=True)
+    recognized_id = models.CharField(max_length=32, null=True, blank=True)
     subscriber_id = models.IntegerField()
 
     def __str__(self):
-        return str(self.id)
+        return str(self.recognized_id)
 
 
 class HistoryMeter(models.Model):
