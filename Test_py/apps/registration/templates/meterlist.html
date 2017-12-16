@@ -1,15 +1,16 @@
 {% extends 'includes/bootstrap4.html' %}
 {% load bootstrap4 %}
 {% block bootstrap4_content %}
-{% load widget_tweaks %}
-{% load filters %}
+    {% load widget_tweaks %}
+    {% load filters %}
     <div class="p-x-1 p-y-3">
 
         <form class="card card-block m-x-auto bg-faded form-width">
             <a class="btn btn-block btn-primary" href="{% url 'Meter' %}">Create meter</a>
             <table>
-                {% if Meters.count%}
+                {% if Meters.count %}
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td class="custom-td-main">Id</td>
@@ -25,10 +26,14 @@
                     </tr>
                     {% for Meter in Meters %}
                         <tr>
-                            <td class="custom-td"><a class="btn btn-block btn-primary" href="/Meter/Edit/{{ Meter.id }}/">EDIT</a></td>
-                            <td class="custom-td"><a class="btn btn-block btn-primary" href="/Meter/Delete/{{ Meter.id }}/">DELETE</a></td>
+                            <td class="custom-td"><a class="btn btn-block btn-primary"
+                                                     href="/Meter/History/{{ Meter.id }}/">HISTORY</a></td>
+                            <td class="custom-td"><a class="btn btn-block btn-primary"
+                                                     href="/Meter/Edit/{{ Meter.id }}/">EDIT</a></td>
+                            <td class="custom-td"><a class="btn btn-block btn-primary"
+                                                     href="/Meter/Delete/{{ Meter.id }}/">DELETE</a></td>
                             <td class="custom-td">{{ Meter.id }}</td>
-                            <td class="custom-td">{{ Meter.id|show_results}}</td>
+                            <td class="custom-td">{{ Meter.id|show_results }}</td>
                             <td class="custom-td">{{ Meter.date_of_creation }}</td>
                             <td class="custom-td">{{ Meter.pulses_per_hour }}</td>
                             <td class="custom-td">{{ Meter.max_value }}</td>

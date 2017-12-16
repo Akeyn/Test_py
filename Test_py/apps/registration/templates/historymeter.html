@@ -1,0 +1,36 @@
+{% extends 'includes/bootstrap4.html' %}
+{% load bootstrap4 %}
+{% block bootstrap4_content %}
+    {% load widget_tweaks %}
+    {% load filters %}
+    <div class="p-x-1 p-y-3">
+
+        <form class="card card-block m-x-auto bg-faded form-width">
+            <table>
+                {% if HistoryMeter.count %}
+                    <tr>
+                        <td class="custom-td-main">Id</td>
+                        <td class="custom-td-main">meter_id</td>
+                        <td class="custom-td-main">start_value</td>
+                        <td class="custom-td-main">end_value</td>
+                        <td class="custom-td-main">difference</td>
+                        <td class="custom-td-main">current_date</td>
+                    </tr>
+                    {% for Item in HistoryMeter %}
+                        <tr>
+                            <td class="custom-td">{{ Item.id }}</td>
+                            <td class="custom-td">{{ Item.meter_id }}</td>
+                            <td class="custom-td">{{ Item.start_value }}</td>
+                            <td class="custom-td">{{ Item.end_value }}</td>
+                            <td class="custom-td">{{ Item.difference }}</td>
+                            <td class="custom-td">{{ Item.current_date }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    HistoryMeter is clear
+                {% endif %}
+            </table>
+        </form>
+        <p class="text-xs-center m-x-auto form-width text-muted"><a href="{% url 'Meterlist' %}">Meterlist</a></p>
+    </div>
+{% endblock %}

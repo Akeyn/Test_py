@@ -173,6 +173,9 @@ def deletemeter(request, meter_id):
     return redirect('/Meterlist')
 
 
+def historymeter(request, meter_id):
+    return render(request, 'historymeter.html', {'HistoryMeter': HistoryMeter.objects.filter(meter_id=meter_id)})
+
 # m = re.match(r"(?P<first_name>\w+) (?P<last_name>\w+)", "Malcolm Reynolds")
 
 

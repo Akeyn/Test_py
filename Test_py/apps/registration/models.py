@@ -57,7 +57,7 @@ class Meter(models.Model):
 
 class HistoryMeter(models.Model):
     meter_id = models.BigIntegerField()
-    min_value = models.FloatField(null=True, blank=True)
+    start_value = models.FloatField(null=True, blank=True)
     end_value = models.FloatField(null=True, blank=True)
     difference = models.FloatField(null=True, blank=True)
     current_date = models.DateField(null=True, blank=True)
