@@ -5,44 +5,45 @@
     {% load filters %}
     <div class="p-x-1 p-y-3">
 
-        <form class="card card-block m-x-auto bg-faded form-width">
+        <form class="card card-block m-x-auto bg-faded">
             <a class="btn btn-block btn-primary" href="{% url 'Meter' %}">Create meter</a>
-            <table>
+            <br>
+            <table class="table">
                 {% if Meters.count %}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="custom-td-main">Id</td>
-                        <td class="custom-td-main">type_meter_id</td>
-                        <td class="custom-td-main">date_of_creation</td>
-                        <td class="custom-td-main">pulses_per_hour</td>
-                        <td class="custom-td-main">max_value</td>
-                        <td class="custom-td-main">min_value</td>
-                        <td class="custom-td-main">value</td>
-                        <td class="custom-td-main">cost</td>
-                        <td class="custom-td-main">recognized_id</td>
-                        <td class="custom-td-main">subscriber_id</td>
-                    </tr>
-                    {% for Meter in Meters %}
+                    <thead>
                         <tr>
-                            <td class="custom-td"><a class="btn btn-block btn-primary"
-                                                     href="/Meter/History/{{ Meter.id }}/">HISTORY</a></td>
-                            <td class="custom-td"><a class="btn btn-block btn-primary"
-                                                     href="/Meter/Edit/{{ Meter.id }}/">EDIT</a></td>
-                            <td class="custom-td"><a class="btn btn-block btn-primary"
-                                                     href="/Meter/Delete/{{ Meter.id }}/">DELETE</a></td>
-                            <td class="custom-td">{{ Meter.id }}</td>
-                            <td class="custom-td">{{ Meter.id|show_results }}</td>
-                            <td class="custom-td">{{ Meter.date_of_creation }}</td>
-                            <td class="custom-td">{{ Meter.pulses_per_hour }}</td>
-                            <td class="custom-td">{{ Meter.max_value }}</td>
-                            <td class="custom-td">{{ Meter.min_value }}</td>
-                            <td class="custom-td">{{ Meter.value }}</td>
-                            <td class="custom-td">{{ Meter.cost }}</td>
-                            <td class="custom-td">{{ Meter.recognized_id }}</td>
-                            <td class="custom-td">{{ Meter.subscriber_id }}</td>
+                            <th class="custom-td-main">recognized_id</th>
+                            <th class="custom-td-main">type_meter_id</th>
+                            <th class="custom-td-main">date_of_creation</th>
+                            <th class="custom-td-main">pulses_per_hour</th>
+                            <th class="custom-td-main">max_value</th>
+                            <th class="custom-td-main">min_value</th>
+                            <th class="custom-td-main">value</th>
+                            <th class="custom-td-main">cost</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
+                    </thead>
+                    {% for Meter in Meters %}
+                        <tbody>
+                            <tr>
+                                <td class="custom-td">{{ Meter.recognized_id }}</td>
+                                <td class="custom-td">{{ Meter.id|show_results }}</td>
+                                <td class="custom-td">{{ Meter.date_of_creation }}</td>
+                                <td class="custom-td">{{ Meter.pulses_per_hour }}</td>
+                                <td class="custom-td">{{ Meter.max_value }}</td>
+                                <td class="custom-td">{{ Meter.min_value }}</td>
+                                <td class="custom-td">{{ Meter.value }}</td>
+                                <td class="custom-td">{{ Meter.cost }}</td>
+                                <td class="custom-td"><a class="btn btn-block btn-primary"
+                                                         href="/Meter/History/{{ Meter.id }}/">HISTORY</a></td>
+                                <td class="custom-td"><a class="btn btn-block btn-primary"
+                                                         href="/Meter/Edit/{{ Meter.id }}/">EDIT</a></td>
+                                <td class="custom-td"><a class="btn btn-block btn-primary"
+                                                         href="/Meter/Delete/{{ Meter.id }}/">DELETE</a></td>
+                            </tr>
+                        </tbody>
                     {% endfor %}
                 {% else %}
                     List is clear

@@ -60,7 +60,8 @@ class HistoryMeter(models.Model):
     start_value = models.FloatField(null=True, blank=True)
     end_value = models.FloatField(null=True, blank=True)
     difference = models.FloatField(null=True, blank=True)
-    current_date = models.DateField(null=True, blank=True)
+    currentdate = models.DateField(null=True, blank=True)
+    money_per_day = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return str(self.id)
