@@ -6,37 +6,10 @@ from django.db.models import Q
 from django import forms
 from .models import *
 
-import string
-import socket
-import json
 import re
 
 
 # Create your forms here.
-
-
-# Конвертер DATE в для передачи через JSON
-def date_handler(obj):
-    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
-
-
-# Общение с сервером
-def broadcast(info):
-    try:
-        client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
-        client_sock.connect(('127.0.0.1', 53210))
-
-        b = json.dumps(info, default=date_handler).encode(
-            'utf-8')  # Преобразование dict в str объект json, преобразовать этот str в bytes
-        client_sock.sendall(b)  # Отправка словаря на сервер
-
-        data = client_sock.recv(1024)
-
-        client_sock.close()
-
-        print(' - - -> ', repr(data))
-    except:
-        print(' -- ERROR CONNECTION -- ')
 
 
 # Метод проверки на кириллицу
@@ -103,7 +76,8 @@ class RegistrationForm(BaseModelForm):
     confirmPassword = forms.CharField(widget=forms.PasswordInput(attrs={'type': 'password', 'placeholder': 'password'}))
     checkbox = forms.BooleanField(
         widget=forms.CheckboxInput(),
-        label='You have read and agree with terms and conditions of the <a href="#">AVM Customer Agreement</a>')
+        label='You have read and agree with terms and conditions of the <a href="#">AVM Customer Agreement</a>'
+    )
 
     def __init__(self, *args, **kwargs):
         # first call parent's constructor
@@ -114,7 +88,7 @@ class RegistrationForm(BaseModelForm):
         self.fields['birthday'].required = False
 
     class Meta:
-        model = Subscriber
+        model = Lecturer
         fields = [
             'email',
             'firstName',
@@ -150,14 +124,14 @@ class RegistrationForm(BaseModelForm):
         c_password = self.cleaned_data.get('password', None)
         c_confirm_password = self.cleaned_data.get('confirmPassword', None)
 
-        email = Subscriber.objects.filter(email=c_email).first()
-        login = Subscriber.objects.filter(login=c_login).first()
+        email = Lecturer.objects.filter(email=c_email).first()
+        login = Lecturer.objects.filter(login=c_login).first()
 
         # Проверка на кириллицу
-        kirillic(errors, c_login, "login")
-        kirillic(errors, c_first_name, "firstName")
+        # kirillic(errors, c_login, "login")
+        # kirillic(errors, c_first_name, "firstName")
         # kirillic(errors, c_second_name, "secondName")
-        kirillic(errors, c_password, "confirmPassword")
+        # kirillic(errors, c_password, "confirmPassword")
 
         # Проверка длины полей
         length_check(errors, c_login, "login")
@@ -234,7 +208,7 @@ class RegistrationForm(BaseModelForm):
     # Сохранение данных в бд
     def save(self, commit=False):
         # Изменение данных перед отправкой
-        subscriber, created = Subscriber.objects.update_or_create(
+        lecturer, created = Lecturer.objects.update_or_create(
             password=make_hash(self.cleaned_data.get('password', None)),
             email=self.cleaned_data.get('email', None),
             firstName=self.cleaned_data.get('firstName', None),
@@ -242,22 +216,9 @@ class RegistrationForm(BaseModelForm):
             login=self.cleaned_data.get('login', None),
             birthday=self.cleaned_data.get('birthday', None),
             country=self.cleaned_data.get('country', None),
-            picture=self.cleaned_data.get('picture', None)
+            picture=self.cleaned_data.get('picture', None),
         )
-        info = {'save': [
-            'registration_subscriber',
-            subscriber.id,
-            subscriber.email,
-            subscriber.firstName,
-            subscriber.secondName,
-            subscriber.login,
-            subscriber.password,
-            subscriber.birthday,
-            subscriber.country,
-            subscriber.created_at
-        ]}  # Словарь для отправки на сервер
-        broadcast(info)  # Отправка данных на сервер
-        return subscriber
+        return lecturer
 
 
 class LoginForm(BaseForm):
@@ -272,7 +233,7 @@ class LoginForm(BaseForm):
 
         c_login_email = self.cleaned_data.get('loginEmail', None)
         c_password = self.cleaned_data.get('password', None)
-        sub = Subscriber
+        sub = Lecturer
 
         # Создания хэша пароля с формы если он был введен
         if c_password is not None:
@@ -301,7 +262,7 @@ class LoginForm(BaseForm):
 class EditForm(BaseForm):
     def __init__(self, user_id, *args, **kwargs):
         super(EditForm, self).__init__(*args, **kwargs)
-        user = Subscriber.objects.filter(id=user_id).first()
+        user = Lecturer.objects.filter(id=user_id).first()
         self.fields['firstName'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'firstName',
                                                                                  'value': user.firstName}))
         self.fields['secondName'] = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'secondName',

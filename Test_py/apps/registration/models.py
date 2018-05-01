@@ -1,5 +1,10 @@
 from django.contrib.sessions.backends.db import SessionStore
+from django.contrib import messages
 from django.db import models
+
+from num2words import num2words
+
+import uuid
 import time
 
 
@@ -15,8 +20,8 @@ class Country(models.Model):
         return str(self.country_name)
 
 
-class Subscriber(models.Model):
-    email = models.EmailField(max_length=64)
+class Lecturer(models.Model):
+    email = models.CharField(max_length=64)
     firstName = models.CharField(max_length=32)
     secondName = models.CharField(max_length=32, null=True, blank=True)
     login = models.CharField(max_length=32)
@@ -24,8 +29,9 @@ class Subscriber(models.Model):
     birthday = models.DateField(null=True, blank=True)  # Сделать не изменяемым в админке
     country = models.IntegerField(choices=Country.objects.values_list('country_id', 'country_name'), null=True,
                                   blank=True)
-    created_at = models.IntegerField(default=int(time.time()))  # timestamp - генерация при регистрации
+    created_at = models.IntegerField(editable=False, default=int(time.time()))  # timestamp - генерация при регистрации
     picture = models.ImageField(null=True, blank=True, upload_to="images/", verbose_name='Picture')
+    rfid = models.CharField(editable=False, max_length=256, default=uuid.uuid1(int(time.time())))
 
     def __str__(self):
         return str(str(self.id) + ' ' + self.login + ' ' + self.email)
@@ -41,7 +47,7 @@ class TypeMeter(models.Model):
 
 class Meter(models.Model):
     type_meter_id = models.BigIntegerField(choices=TypeMeter.objects.values_list('id', 'type_meter_name'), null=True,
-                                           blank=True)  # TODO
+                                           blank=True)
     date_of_creation = models.DateField(null=True, blank=True)
     pulses_per_hour = models.IntegerField(null=True, blank=True)
     max_value = models.FloatField(null=True, blank=True)
@@ -65,3 +71,28 @@ class HistoryMeter(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Audience(models.Model):
+    audience_name = models.PositiveIntegerField()  # TODO
+
+    def __str__(self):
+        return str(self.id)
+
+
+class Schedule(models.Model):
+    lecture = models.IntegerField(default=1, choices=[(item, num2words(item)) for item in range(1, 7)])
+    audience_name = models.IntegerField(choices=[tuple(zip(item.values(), item.values()))[0] for item in Audience.objects.values("audience_name")],
+                                        null=True,
+                                        blank=True)     # TODO не изменяються при редактировании данные
+    day = models.DateField(null=True, blank=True)
+    lecturer = models.CharField(choices=Lecturer.objects.values_list('rfid', 'firstName'), null=True, blank=True,
+                                max_length=256)         # TODO не изменяються при редактировании данные
+    is_passed = models.IntegerField(editable=False, default=0)
+
+    def __str__(self):
+        return str(self.id)
+
+    #def save(self, *args, **kwargs):  # TODO
+        #email = Schedule.objects.filter(email=c_email).first()
+        #messages.error("The message")

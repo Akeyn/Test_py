@@ -20,7 +20,7 @@ def registration(request):
 
         if form.is_valid() and request.session.get("user_id") is None:  # Проверка формы is_valid и существования сессии
             form.save()
-            user = Subscriber.objects.filter(login=login).first()  # Получение логина пользователя
+            user = Lecturer.objects.filter(login=login).first()  # Получение логина пользователя
             request.session['user_id'] = str(user.id)  # Сделать создание сессии не тут
             return redirect('/Userpage')  # Перенаправление на страницу пользователя
         else:
@@ -39,7 +39,7 @@ def login(request):
         loginEmail = request.POST.get('loginEmail', None)
 
         if form.is_valid() and request.session.get("user_id") is None:  # Проверка формы is_valid и существования сессии
-            user = Subscriber.objects.filter(login=loginEmail).first() or Subscriber.objects.filter(
+            user = Lecturer.objects.filter(login=loginEmail).first() or Lecturer.objects.filter(
                 email=loginEmail).first()  # Получение логина или почты пользователя
             request.session['user_id'] = str(user.id)  # Сделать создание сессии не тут
 
@@ -64,20 +64,20 @@ def userpage(request):
             return redirect('/')  # Переадресация на главную страницу
 
     try:
-        return render(request, 'userpage.html', {'Subscriber': Subscriber.objects.get(id=request.session['user_id'])})
+        return render(request, 'userpage.html', {'Subscriber': Lecturer.objects.get(id=request.session['user_id'])})
     except:
         return render(request, 'userpage.html')
 
 
 def editinfo(request):
     usr = request.session['user_id']
-    sub = Subscriber.objects.get(id=usr)
+    sub = Lecturer.objects.get(id=usr)
 
     form = EditForm(usr, request.POST, request.FILES)
 
     if request.method == "POST":
         if form.is_valid():
-            form = Subscriber.objects.get(id=usr)
+            form = Lecturer.objects.get(id=usr)
             form.firstName = request.POST.get('firstName', None)
             form.secondName = request.POST.get('secondName', None)
             form.birthday = request.POST.get('birthday', None)
@@ -96,7 +96,7 @@ def editinfo(request):
 
 
 def userlist(request):
-    return render(request, 'userlist.html', {'Subscribers': Subscriber.objects.all()})
+    return render(request, 'userlist.html', {'Subscribers': Lecturer.objects.all()})
 
 
 def error(request):

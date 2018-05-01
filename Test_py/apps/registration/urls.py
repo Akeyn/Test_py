@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'Meter/History/(?P<meter_id>[0-9]+)/$', views.historymeter, name='HistoryMeter'),
     # url(r'registration_user/$', views.registration_user, name='registration_user'),
     # url(r'^registration/(?P<index>[0-9]+)/$', views.re),
+    url(r'Meter/$', views.meter, name='Meter'),
 ]
