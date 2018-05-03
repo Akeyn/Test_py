@@ -1,0 +1,3 @@
+title=MyApp
+author=Artem
+orientation=portrait

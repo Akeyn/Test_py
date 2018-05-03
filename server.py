@@ -1,15 +1,41 @@
-﻿from datetime import date
+﻿from datetime import date, time, timedelta
 
 import sqlite3
 import socket
 import json
 
+import itertools
 import hashlib
 import hmac
 
 serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
 serv_sock.bind(('127.0.0.1', 53210))
 serv_sock.listen(10)  # 10 - количество данных "в воздухе" которые попадут на сервер
+
+
+def validation_date(lecture_nums, hours, minutes):
+    lecture_dict = {
+        1: (timedelta(hours=7, minutes=45), timedelta(hours=9, minutes=20)),
+        2: (timedelta(hours=9, minutes=30), timedelta(hours=11, minutes=5)),
+        3: (timedelta(hours=11, minutes=15), timedelta(hours=12, minutes=50)),
+        4: (timedelta(hours=13, minutes=10), timedelta(hours=14, minutes=45)),
+        5: (timedelta(hours=14, minutes=55), timedelta(hours=16, minutes=30)),
+        6: (timedelta(hours=16, minutes=40), timedelta(hours=18, minutes=15)),
+    }
+
+    items = sorted(list(itertools.chain(*lecture_nums)))
+    current_time = timedelta(hours=hours, minutes=minutes)
+    extra_time = timedelta(minutes=5)
+
+    available_times = {}
+    for item in items:
+        lecture = lecture_dict.get(item)
+        start = lecture[0] - extra_time
+        end = lecture[1]
+        available_times[item] = start <= current_time <= end
+
+    return available_times  # start <= current_time <= end
+
 
 
 def make_hash(value):
@@ -116,6 +142,39 @@ def processing(g_data):
                     client_sock.sendall(bytes(str(user_exist), "ascii"))
             except:
                 print("error")
+
+        if obr == 'barcode':
+            try:
+                c.execute("SELECT lecture FROM registration_schedule WHERE audience_name = ? AND day = ? AND lecturer = ?", (
+                    value[0],
+                    value[1],
+                    value[4],
+                ))
+
+                value_exist = c.fetchall()
+                # TODO если существует такое поле в таблице расписание(с такой аудиторией, с таким днем проведения пары, и лектором)
+                if value_exist:
+                    # TODO если существует (проверить опоздал ли препод, и если опоздал поставить флаг is_passed = 'True'), отправить True - иначе False
+                    available_times = validation_date(value_exist, value[2], value[3])
+                    if available_times:
+                        # TODO записать в БД о том что пришел
+                        for available_time in available_times:
+                            if available_times.get(available_time):
+                                c.execute('UPDATE registration_schedule SET is_passed = ? WHERE lecture = ? AND audience_name = ? AND day = ? AND lecturer = ?', (
+                                    int(available_times.get(available_time)),
+                                    available_time,
+                                    value[0],
+                                    value[1],
+                                    value[4]
+                                ))
+                        if True in available_times.values():
+                            client_sock.sendall(bytes(str(True), "ascii"))
+                    else:
+                        client_sock.sendall(bytes(str(False), "ascii"))
+                else:
+                    client_sock.sendall(bytes(str(value_exist), "ascii"))
+            except:
+                client_sock.sendall(bytes(str(c.fetchall()), "ascii"))
     except:
         pass
 
