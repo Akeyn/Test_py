@@ -39,20 +39,40 @@ class ScheduleForm(forms.ModelForm):
             lecturer=lecturer,
             day=day,
             audience_name=audience_name,
-            lecture=lecture).first()
+            lecture=lecture).count()
         is_busy_lecturer2 = Schedule.objects.filter(
             lecturer=lecturer,
             day=day,
-            lecture=lecture).first()
+            lecture=lecture).count()
         is_busy_audience = Schedule.objects.filter(
             day=day,
             audience_name=audience_name,
-            lecture=lecture).first()
+            lecture=lecture).count()
 
-        if is_busy_lecturer or is_busy_lecturer2:
-            raise forms.ValidationError("Lecturer is busy.")
-        if is_busy_audience:
-            raise forms.ValidationError("Audience is busy.")
+        if not self.instance.pk:
+            if is_busy_lecturer or is_busy_lecturer2:
+                raise forms.ValidationError("Lecturer is busy.")
+            if is_busy_audience:
+                raise forms.ValidationError("Audience is busy.")
+        else:
+            is_busy_lecturer0 = Schedule.objects.filter(
+                lecturer=lecturer,
+                day=day,
+                audience_name=audience_name,
+                lecture=lecture).exclude(id=self.instance.pk).count()
+            is_busy_lecturer00 = Schedule.objects.filter(
+                lecturer=lecturer,
+                day=day,
+                lecture=lecture).exclude(id=self.instance.pk).count()
+            is_busy_audience0 = Schedule.objects.filter(
+                day=day,
+                audience_name=audience_name,
+                lecture=lecture).exclude(id=self.instance.pk).count()
+
+            if is_busy_lecturer0 or is_busy_lecturer00:
+                raise forms.ValidationError("Lecturer is busy.")
+            if is_busy_audience0:
+                raise forms.ValidationError("Audience is busy.")
         return self.cleaned_data
 
 
