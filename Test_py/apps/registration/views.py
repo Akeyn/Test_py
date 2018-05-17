@@ -107,8 +107,11 @@ def test(request):
     return render(request, 'Test.html')
 
 
-def meterlist(request):
-    return render(request, 'meterlist.html', {'Meters': Meter.objects.filter(subscriber_id=request.session['user_id'])})
+def schedule(request):
+    lecturer = Lecturer.objects.get(id=request.session['user_id'])
+    schedules = Schedule.objects.filter(lecturer=lecturer.rfid)
+
+    return render(request, 'schedule.html', {'Schedules': schedules})
 
 
 def meter(request):

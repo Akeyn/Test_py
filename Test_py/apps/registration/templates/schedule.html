@@ -1,0 +1,48 @@
+{% extends 'includes/bootstrap4.html' %}
+{% load bootstrap4 %}
+{% block bootstrap4_content %}
+{% load widget_tweaks %}
+{% load filters %}
+    <div class="p-x-1 p-y-3">
+
+        <form class="card card-block m-x-auto bg-faded">
+            <legend class="m-b-1 text-xs-center">{{ request.resolver_match.url_name }}</legend>
+            <!--<a class="btn btn-block btn-primary" href="{}% url 'Meter' %">Create meter</a>-->
+            <br>
+            <table class="table">
+                {% if Schedules.count %}
+                    <thead>
+                        <tr>
+                            <th class="custom-td-main">lecture</th>
+                            <th class="custom-td-main">audience_name</th>
+                            <th class="custom-td-main">day</th>
+                            <th class="custom-td-main">is_passed</th>
+                            <!--<th></th>-->
+                            <!--<th></th>-->
+                            <!--<th></th>-->
+                        </tr>
+                    </thead>
+                    {% for Schedule in Schedules %}
+                        <tbody>
+                            <tr>
+                                <td class="custom-td">{{ Schedule.lecture }}</td>
+                                <td class="custom-td">{{ Schedule.audience_name }}</td>
+                                <td class="custom-td">{{ Schedule.day }}</td>
+                                <td class="custom-td">{{ Schedule.is_passed }}</td>
+                                <!--<td class="custom-td"><a class="btn btn-block btn-primary"
+                                                         href="/Meter/History/{ Meter.id }}/">HISTORY</a></td>-->
+                                <!--<td class="custom-td"><a class="btn btn-block btn-primary"
+                                                         href="/Meter/Edit/{ Meter.id }}/">EDIT</a></td>-->
+                                <!--<td class="custom-td"><a class="btn btn-block btn-primary"
+                                                         href="/Meter/Delete/{ Meter.id }}/">DELETE</a></td>-->
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                {% else %}
+                    List is clear
+                {% endif %}
+            </table>
+        </form>
+        <p class="text-xs-center m-x-auto form-width text-muted"><a href="{% url 'Userpage' %}">Userpage</a></p>
+    </div>
+{% endblock %}
