@@ -2,7 +2,7 @@ import kivy
 kivy.require('1.9.1')  # replace with your current kivy version !
 
 from kivy.app import App
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, ListProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
@@ -75,19 +75,22 @@ class Login(Screen):
 
         try:
             user_exist = broadcast(info)
+            schedule = dict(json.loads(user_exist.decode('utf-8')))
+            rfid = list(schedule.keys())[0]
 
-            if user_exist == b"True":
-                self.processing_login(login_text, password_text)
+            if rfid:
+                self.processing_login(login_text, schedule.get(rfid), rfid)
             else:
                 exception_handler("User doesn't exist")
         except Exception as ex:
             exception_handler(ex)
 
-    def processing_login(self, login_text, password_text):
+    def processing_login(self, login_text, schedule, rfid):
         app = App.get_running_app()
 
         app.username = login_text
-        app.password = password_text
+        app.schedule = schedule
+        app.rfid = rfid
 
         self.manager.transition = SlideTransition(direction="left")
         self.manager.current = 'connected'
@@ -103,6 +106,8 @@ class Login(Screen):
 class LoginApp(App):
     username = StringProperty(None)
     password = StringProperty(None)
+    schedule = ListProperty()
+    rfid = StringProperty(None)
 
     def build(self):
         manager = ScreenManager()

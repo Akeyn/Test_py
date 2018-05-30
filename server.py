@@ -132,16 +132,20 @@ def processing(g_data):
         if obr == 'login':
             # Проверка на существование пользователя
             try:
-                c.execute("SELECT * FROM registration_lecturer WHERE login = ? AND password = ? ",
+                c.execute("SELECT rfid FROM registration_lecturer WHERE login = ? AND password = ? ",
                           (value[0], make_hash(value[1]),))
-                user_exist = c.fetchone() is not None
+                rfid = c.fetchall()[0][0]
 
-                if user_exist is True:
-                    client_sock.sendall(bytes(str(user_exist), "ascii"))
+                if rfid:
+                    c.execute("SELECT * FROM registration_schedule WHERE lecturer = ? ", (rfid, ))
+                    schedule = {rfid: c.fetchall()}
+                    b = json.dumps(schedule).encode('utf-8')
+                    client_sock.sendall(b)
                 else:
-                    client_sock.sendall(bytes(str(user_exist), "ascii"))
-            except:
-                print("error")
+                    client_sock.sendall(json.dumps({str(False): []}).encode('utf-8'))
+            except Exception as e:
+                client_sock.sendall(json.dumps({str(False): []}).encode('utf-8'))
+                print(e)
 
         if obr == 'barcode':
             try:
@@ -174,7 +178,7 @@ def processing(g_data):
                 else:
                     client_sock.sendall(bytes(str(value_exist), "ascii"))
             except:
-                client_sock.sendall(bytes(str(c.fetchall()), "ascii"))
+                client_sock.sendall(bytes(str(value_exist), "ascii"))
     except:
         pass
 

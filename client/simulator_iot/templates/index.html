@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% from "_formhelpers.html" import render_field %}
+<html lang="en">
+    <head>
+        <title>Python Flask Bucket List App</title>
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/css/bootstrap-iso.css" rel="stylesheet">
+        <link href="../static/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="p-x-1 p-y-3">
+            <form action="" method="POST" class="card card-block m-x-auto bg-faded form-width">
+				<dl>
+					{{ form.csrf_token }}
+					<legend class="m-b-1 text-xs-center">Simulation</legend>
+
+					<div class="form-group has-float-label">
+                        {{ render_field(form.barcode) }}
+						<!--
+						    render_field(form.barcode())
+						    <input type="text" name="barCode" placeholder="Bar code" class="form-control" required="" id="id_barCode">
+						-->
+					</div>
+
+					<div class="text-xs-center">
+						<input class="btn btn-block btn-primary" type="submit" value="Test">
+					</div>
+				<dl>
+            </form>
+        <div>
+    </body>
+</html>
+
