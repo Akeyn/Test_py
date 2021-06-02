@@ -37,7 +37,7 @@ kivy.deps.gstreamer==0.1.12
 kivy.deps.sdl2==0.1.17
 lxml==4.1.1
 Markdown==2.6.9
-markdown2==2.3.4
+markdown2==2.4.0
 numpy==1.13.3
 oauth2client==3.0.0
 olefile==0.44
