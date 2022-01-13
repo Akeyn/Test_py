@@ -43,7 +43,7 @@ oauth2client==3.0.0
 olefile==0.44
 parsel==1.2.0
 pexpect==4.3.0
-Pillow==4.3.0
+Pillow==9.0.0
 protobuf==3.4.0
 ptyprocess==0.5.2
 py==1.4.34
