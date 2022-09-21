@@ -57,7 +57,7 @@ pyOpenSSL==17.3.0
 pypiwin32==220
 Pyrebase==3.0.27
 pytest==3.2.3
-python-jwt==2.0.1
+python-jwt==3.3.4
 pytz==2017.2
 queuelib==1.4.2
 requests==2.11.1
